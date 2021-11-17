@@ -1,6 +1,7 @@
 package com.appdeveloperblog.app.ws.ui.controllers;
 
 
+import com.appdeveloperblog.app.ws.ui.model.request.UserDetailRequestModel;
 import com.appdeveloperblog.app.ws.ui.model.response.UserRest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,9 +34,17 @@ public class UserController {
         return new ResponseEntity<UserRest>(HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping
-    public String createUser() {
-        return "create user was called";
+    @PostMapping(
+            produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<UserRest> createUser(@RequestBody UserDetailRequestModel userDetails) {
+        UserRest returnValue = new UserRest();
+
+        returnValue.setEmail(userDetails.getEmail());
+        returnValue.setFirstName(userDetails.getFirstName());
+        returnValue.setLastName(userDetails.getLastName());
+
+        return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
     }
 
     @PutMapping
