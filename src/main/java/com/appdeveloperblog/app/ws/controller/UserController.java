@@ -9,7 +9,11 @@ public class UserController {
 
 
     @GetMapping
-    public String getUsers(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @RequestParam(value = "limit", defaultValue = "50") int limit){
+    public String getUsers(@RequestParam(value = "page", defaultValue = "1", required = false) int page, @RequestParam(value = "limit", defaultValue = "50", required = false) int limit,
+                           @RequestParam(value = "sort", required = false) String sort)
+
+    {
+        if(sort == null) sort = "desc";
         return "get users was called with page = " + page + " and limit = " + limit;
     }
 
