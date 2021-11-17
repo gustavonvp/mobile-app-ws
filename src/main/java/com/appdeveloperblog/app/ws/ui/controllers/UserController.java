@@ -1,6 +1,10 @@
-package com.appdeveloperblog.app.ws.controller;
+package com.appdeveloperblog.app.ws.ui.controllers;
 
 
+import com.appdeveloperblog.app.ws.ui.model.response.UserRest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,9 +21,16 @@ public class UserController {
         return "get users was called with page = " + page + " and limit = " + limit;
     }
 
-    @GetMapping(path = "{/userId}")
-    public String getUser(@PathVariable String userId) {
-        return "get user was called with user id = " + userId;
+    @GetMapping(path = "{/userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity getUser(@PathVariable String userId) {
+
+        UserRest returnValue = new UserRest();
+
+        returnValue.setEmail("test@test.com");
+        returnValue.setFirstName("Gustavo");
+        returnValue.setLastName("dePaula");
+
+        return new ResponseEntity<UserRest>(HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping
