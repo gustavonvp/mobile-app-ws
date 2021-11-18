@@ -1,10 +1,12 @@
 package com.appdeveloperblog.app.ws.ui.model.response;
 
+import java.util.UUID;
+
 public class UserRest {
     private String firstName;
     private String lastName;
     private String email;
-    private String userId;
+    private UUID userId;
 
 
     public String getFirstName() {
@@ -31,11 +33,11 @@ public class UserRest {
         this.email = email;
     }
 
-    public String getUserId() {
+    public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 }
